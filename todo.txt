@@ -1,0 +1,8 @@
+Random Decisions I make
+- doing routing client side via react-router-doms
+
+- Determine if securing views from client side or flask and implement
+  role based access to the views
+
+Deploying
+Need to seperate environment variables from being in .flaskenv file

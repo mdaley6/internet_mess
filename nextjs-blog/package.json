@@ -1,0 +1,26 @@
+{
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "start-backend": "cd backend && env/bin/flask run --no-debugger"
+  },
+  "dependencies": {
+    "autoprefixer": "^10.4.14",
+    "next": "^13.1.2",
+    "postcss": "^8.4.21",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "name": "nextjs-blog",
+  "description": "This is a starter template for [Learn Next.js](https://nextjs.org/learn).",
+  "version": "1.0.0",
+  "main": "index.js",
+  "keywords": [],
+  "author": "Michael Daley",
+  "license": "ISC",
+  "devDependencies": {
+    "tailwindcss": "^3.2.7"
+  }
+}
