@@ -17,17 +17,16 @@ export default function Games() {
 
   var [total, setTotal] = useState(0); 
 
+
+  //flash a message if they were wrong or right
   const checkAnswer = (event) => {
     if(jsonData.answer.replace(/&quot;/g, '"').replace(/&#039;/g, "'") === event.target.value) {
       setCorrect(++correct);
-      console.log('CORRECT' + correct);
     }
     else {
       setWrong(++wrong)
-      console.log('WRONG' + wrong);
     }
     setTotal(++total)
-    console.log('TOTAL:' + total)
 
     fetchQuestion();
   };
@@ -59,7 +58,7 @@ export default function Games() {
 
   function Score() {
     return (
-      <p>score goes here</p>
+      <p className='bg-gray-200 border-2 border-black rounded-lg p-1 '>Accuracy: {correct} / {total} ({(correct*100/total).toFixed(2)}%)</p>
     );
   }
 
@@ -92,9 +91,9 @@ export default function Games() {
         <div className='flex bg-white w-1/2 sm:w-3/4 h-3/4 sm:h-3/4 border-2 border-black rounded-3xl items-center justify-center'>
             <div className='flex flex-col'>
               {!startGame && <button className='text-blue-600' onClick={startClicked}>Start</button>}
+              <div>{startGame && <Score/>}</div>
               <div className=''>{startGame && <TriviaQuestion question={jsonData.question.replace(/&quot;/g, '"').replace(/&#039;/g, "'")} answer={jsonData.answer.replace(/&quot;/g, '"').replace(/&#039;/g, "'")}/>}</div>
               <div>{startGame && <NewQuestion/>}</div>
-              <div>{startGame && <Score/>}</div>
             </div>
         </div>
       </div>
