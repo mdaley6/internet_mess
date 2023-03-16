@@ -28,6 +28,8 @@ export default function Games() {
     }
     setTotal(++total)
     console.log('TOTAL:' + total)
+
+    fetchQuestion();
   };
 
   useEffect(() => {
@@ -55,15 +57,30 @@ export default function Games() {
     );
   }
 
+  function Score() {
+    return (
+      <p>score goes here</p>
+    );
+  }
+
   function TriviaQuestion(props) {
+
+    //randomize the location of the correct answer
+    useEffect(()=>{
+      var pos = Math.floor(Math.random()*4)+1;
+      document.getElementById("choice1").className += (' row-start-' + pos);
+    },[]);
+  
     return (
       <div>
         <p>Trivia</p>
         <p>{props.question}</p>
-        <input className='border-2 border-red-500 hover:bg-green-500' id="answer1" onClick={checkAnswer} type="button" value={jsonData.choices[0].replace(/&quot;/g, '"').replace(/&#039;/g, "'")}></input>
-        <input className='border-2 border-red-500 hover:bg-green-500' id="answer2" onClick={checkAnswer} type="button" value={jsonData.choices[1].replace(/&quot;/g, '"').replace(/&#039;/g, "'")}></input>
-        <input className='border-2 border-red-500 hover:bg-green-500' id="answer3" onClick={checkAnswer} type="button" value={jsonData.choices[2].replace(/&quot;/g, '"').replace(/&#039;/g, "'")}></input>
-        <input className='border-2 border-red-500 hover:bg-green-500' id="answer4" onClick={checkAnswer} type="button" value={props.answer}></input>
+        <div className='grid gap-2'>
+          <input className='border-2 border-red-500 hover:bg-green-500' id="choice1" onClick={checkAnswer} type="button" value={props.answer}></input>
+          <input className='border-2 border-red-500 hover:bg-green-500' id="choice2" onClick={checkAnswer} type="button" value={jsonData.choices[0].replace(/&quot;/g, '"').replace(/&#039;/g, "'")}></input>
+          <input className='border-2 border-red-500 hover:bg-green-500' id="choice3" onClick={checkAnswer} type="button" value={jsonData.choices[1].replace(/&quot;/g, '"').replace(/&#039;/g, "'")}></input>
+          <input className='border-2 border-red-500 hover:bg-green-500' id="choice4" onClick={checkAnswer} type="button" value={jsonData.choices[2].replace(/&quot;/g, '"').replace(/&#039;/g, "'")}></input>
+        </div>
       </div>
     
     );
@@ -74,9 +91,10 @@ export default function Games() {
         <NavBar />
         <div className='flex bg-white w-1/2 sm:w-3/4 h-3/4 sm:h-3/4 border-2 border-black rounded-3xl items-center justify-center'>
             <div className='flex flex-col'>
-              <button className='text-blue-600' onClick={startClicked}>Start</button>
+              {!startGame && <button className='text-blue-600' onClick={startClicked}>Start</button>}
               <div className=''>{startGame && <TriviaQuestion question={jsonData.question.replace(/&quot;/g, '"').replace(/&#039;/g, "'")} answer={jsonData.answer.replace(/&quot;/g, '"').replace(/&#039;/g, "'")}/>}</div>
               <div>{startGame && <NewQuestion/>}</div>
+              <div>{startGame && <Score/>}</div>
             </div>
         </div>
       </div>
