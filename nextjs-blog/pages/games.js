@@ -6,6 +6,11 @@ import Button from '../components/Button';
 
 export default function Games() {
 
+  var [lastAnswer, setLastAnswer] = useState();
+
+  var [displayQuestion, setDisplayQuestion] = useState(true);
+  var [displayScore, setDisplayScore] = useState(false);
+
   const [startGame, setStartGame] = useState(false); 
 
   const [jsonData, setJsonData] = useState(null);
@@ -21,12 +26,23 @@ export default function Games() {
   //flash a message if they were wrong or right
   const checkAnswer = (event) => {
     if(jsonData.answer.replace(/&quot;/g, '"').replace(/&#039;/g, "'") === event.target.value) {
+      setLastAnswer(true);
       setCorrect(++correct);
     }
     else {
-      setWrong(++wrong)
+      setLastAnswer(false);
+      setWrong(++wrong);
     }
-    setTotal(++total)
+    setTotal(++total);
+
+    //display score for 2 secs between questions
+    setDisplayQuestion(false);
+    setDisplayScore(true);
+
+    setTimeout(() =>{
+      setDisplayScore(false);
+      setDisplayQuestion(true);
+    },2000);
 
     fetchQuestion();
   };
@@ -40,6 +56,19 @@ export default function Games() {
         .then(response => response.json())
         .then(data => setJsonData(data))
         .catch(error => console.error(error));
+  }
+
+  function ScoreDisplay () {
+
+    return (
+      <div>
+        {lastAnswer && <p className='text-green-500 border-4 border-green-700 m-2 p-4'>Correct</p>}
+        {!lastAnswer && <p className='text-red-500 border-4 border-red-700 m-2 p-4'>Incorrect</p>}
+        <p>Score {correct} / {total} </p>
+      </div>
+
+    );
+    
   }
 
   function startClicked(){
@@ -92,8 +121,9 @@ export default function Games() {
             <div className='flex flex-col'>
               {!startGame && <button className='text-blue-600' onClick={startClicked}>Start</button>}
               <div>{startGame && <Score/>}</div>
-              <div className=''>{startGame && <TriviaQuestion question={jsonData.question.replace(/&quot;/g, '"').replace(/&#039;/g, "'")} answer={jsonData.answer.replace(/&quot;/g, '"').replace(/&#039;/g, "'")}/>}</div>
-              <div>{startGame && <NewQuestion/>}</div>
+              <div className=''>{startGame && displayQuestion && <TriviaQuestion question={jsonData.question.replace(/&quot;/g, '"').replace(/&#039;/g, "'")} answer={jsonData.answer.replace(/&quot;/g, '"').replace(/&#039;/g, "'")}/>}</div>
+              <div>{displayScore && <ScoreDisplay />}</div>
+              <div>{displayQuestion && startGame && <NewQuestion/>}</div>
             </div>
         </div>
       </div>
