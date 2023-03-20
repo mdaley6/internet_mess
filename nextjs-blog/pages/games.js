@@ -1,7 +1,5 @@
-import Link from 'next/link';
 import {useState, useEffect} from 'react';
 import NavBar from '../components/NavBar';
-import Button from '../components/Button';
 
 
 export default function Games() {

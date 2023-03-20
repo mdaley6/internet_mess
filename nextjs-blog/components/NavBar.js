@@ -11,11 +11,12 @@ const NavButton = (props) => {
 
 const NavBar = (props) => {
     return (
-        <div className='w-full'>
+        <div className='w-full bg-blue-600'>
             <div className='flex flex-row justify-between py-4 w-3/4'>
                 <NavButton path='' name='Home' />
                 <NavButton path='games' name='Back to Game' />
                 <NavButton path='leaders' name='Leader Board' />
+                <NavButton path='golfcard' name='Golf Cards' />
                 <NavButton path='login' name='Log In' />
             </div>
         </div>
