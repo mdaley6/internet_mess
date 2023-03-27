@@ -1,9 +1,10 @@
-# internet_mess
-A mess of a website to test &amp; build whatever whatever I feel like
+# Internet Mess
+A repository that contains a hot mess of a website
+I made it to build test &amp; build whatever whatever I feel like stress freeeeee
 
-*In Progress Features*
+**In Progress Features**
 - Trivia Game
 - Golf Card Game
 
-*Completed Features*
+**Completed Features**
 - lol
