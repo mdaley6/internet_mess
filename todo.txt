@@ -6,3 +6,7 @@ Random Decisions I make
 
 Deploying
 Need to seperate environment variables from being in .flaskenv file
+
+Features:
+- could do something like help me plan my week based on weather and time 
+and varying activites etc (GPT could help a lot or do it for me) 
