@@ -41,6 +41,7 @@ export default function GolfCards() {
                 <option value="7">7</option>
                 <option value="8">8</option>
             </select>
+            
             <label for="team-game">Team Game:</label>
             <input type="radio" id="team-game-yes" name="team-game" value="yes"></input>
             <label for="team-game-yes">Yes</label>
