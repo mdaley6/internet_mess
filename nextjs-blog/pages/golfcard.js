@@ -41,7 +41,7 @@ export default function GolfCards() {
                 <option value="7">7</option>
                 <option value="8">8</option>
             </select>
-            
+
             <label for="team-game">Team Game:</label>
             <input type="radio" id="team-game-yes" name="team-game" value="yes"></input>
             <label for="team-game-yes">Yes</label>
@@ -55,6 +55,13 @@ export default function GolfCards() {
                 <option value="9">9</option>
                 <option value="18">18</option>
             </select>
+
+            <label for="difficulty">Difficulty:</label>
+            <input type="radio" id="difficulty-easy" value="easy"checked></input>
+            <label for="team-game-easy">Easy</label>
+            <input type="radio" id="team-game-hard" name="team-game" value="hard"></input>
+            <label for="team-game-hard">Hard</label>
+
             <button className='border-2 border-yellow-400 hover:border-yellow-600 bg-green-200 rounded m-2 p-1 hover:bg-green-500' onClick={generateCard}>Generate Card</button>
             {currentCard}
         </div>
